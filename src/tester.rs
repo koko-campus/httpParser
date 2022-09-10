@@ -24,9 +24,8 @@ fn tcp_listener(ip_address: String, http_port: String) {
 		let stream = stream.unwrap();
 
 		for stream in listener.incoming() {
-			let stream = stream.unwrap();
 	
-			handle_connection(stream);
+			handle_connection(stream.unwrap());
 		}
 	}
 }
