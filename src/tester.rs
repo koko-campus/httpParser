@@ -4,7 +4,6 @@ use std::io::prelude::*;
 use std::net::TcpStream;
 use std::net::TcpListener;
 
-
 mod http_parser;
 
 fn main() {
@@ -34,13 +33,7 @@ fn tcp_listener(ip_address: String, http_port: String) {
 
 
 fn handle_connection(mut stream: TcpStream) {
-	let mut buffer = [0; 1024];
-
-	stream.read(&mut buffer).unwrap();
-
-	println!(" ::::: REQUEST START ::::: ");
-	println!("{}", String::from_utf8_lossy(&buffer[..]));
-	println!(" ::::: REQUEST END... ::::: ");
+	stream = http_parser::http_parser::parse(stream);
 
 	let response = "HTTP/1.1 200 OK\r\n\r\nHELLO";
 	stream.write(response.as_bytes()).unwrap();
