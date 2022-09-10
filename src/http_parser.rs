@@ -18,8 +18,7 @@ pub mod http_parser {
     }
 
 
-    pub fn parse(stream: TcpStream) -> TcpStream {
-        let raw_stream = stream.try_clone();
+    pub fn parse(stream: TcpStream) {
         let mut stream_reader = BufReader::new(stream);
     
         let mut first_line = String::new();
@@ -34,7 +33,6 @@ pub mod http_parser {
         println!("{}", format!("METHOD -> {}", method));
         println!("{}", format!("PATH -> {}", path));
 
-        return raw_stream.unwrap();
     }
 
 }

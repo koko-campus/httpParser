@@ -33,7 +33,8 @@ fn tcp_listener(ip_address: String, http_port: String) {
 
 
 fn handle_connection(mut stream: TcpStream) {
-	stream = http_parser::http_parser::parse(stream);
+	let cloned_stream = stream.try_clone();
+	http_parser::http_parser::parse(cloned_stream.unwrap());
 
 	let response = "HTTP/1.1 200 OK\r\n\r\nHELLO";
 	stream.write(response.as_bytes()).unwrap();
