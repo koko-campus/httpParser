@@ -11,6 +11,7 @@ pub mod http_parser {
     pub enum HttpMethod {
         Get,
         Post,
+        Unknown,
     }
 
     pub struct HttpRequestStruct {
@@ -32,7 +33,7 @@ pub mod http_parser {
         let path = params.next().unwrap();
 
         let http_request_data = HttpRequestStruct {
-            method: if method == "GET" {HttpMethod::Get} else {HttpMethod::Post},
+            method: if method == "GET" {HttpMethod::Get} else if method == "POST" {HttpMethod::Post} else {HttpMethod::Unknown},
             path: path.to_string(),
         };
 
