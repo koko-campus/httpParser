@@ -7,10 +7,14 @@ pub mod http_parser {
     use std::{io::BufReader, net::TcpStream};
 
 
+    pub enum HttpMethod {
+        Get,
+        Post,
+    }
+
     pub struct HttpRequestStruct {
-        method: String,
-        path: String,
-        
+        method: HttpMethod,
+        path: String,  
     }
 
 
