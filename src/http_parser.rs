@@ -6,8 +6,7 @@ pub mod http_parser {
     use std::io::BufRead;
     use std::{io::BufReader, net::TcpStream};
 
-    pub struct Parse {
-    }
+
     pub struct HttpRequestStruct {
         method: String,
         path: String,
