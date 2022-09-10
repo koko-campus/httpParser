@@ -7,18 +7,19 @@ pub mod http_parser {
     use std::{io::BufReader, net::TcpStream};
 
 
+    #[derive(Debug)]
     pub enum HttpMethod {
         Get,
         Post,
     }
 
     pub struct HttpRequestStruct {
-        method: HttpMethod,
-        path: String,  
+        pub method: HttpMethod,
+        pub path: String,  
     }
 
 
-    pub fn parse(stream: TcpStream) {
+    pub fn parse(stream: TcpStream) -> HttpRequestStruct {
         let mut stream_reader = BufReader::new(stream);
     
         let mut first_line = String::new();
@@ -30,9 +31,12 @@ pub mod http_parser {
         let method = params.next().unwrap();
         let path = params.next().unwrap();
 
-        println!("{}", format!("METHOD -> {}", method));
-        println!("{}", format!("PATH -> {}", path));
+        let http_request_data = HttpRequestStruct {
+            method: if method == "GET" {HttpMethod::Get} else {HttpMethod::Post},
+            path: path.to_string(),
+        };
 
+        return http_request_data;
     }
 
 }
