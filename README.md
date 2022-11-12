@@ -2,10 +2,9 @@
 
 Rust言語でHTTPリクエストをパースするためのクレート(モジュール)です。  
 
+## ファイル構成
 
-# ファイル構成
-
-## tester.rs
+### tester.rs
 
 クレートモジュールをテストするための簡単なWEBサーバです。  
 「http_parser」ルートディレクトリに「.env」ファイルを生成して、以下の内容を記述してください。  
@@ -15,8 +14,7 @@ IP_ADDRESS="★★★"
 HTTP_PORT="★★★"
 ```
 
-
-## http_parser.rs
+### http_parser.rs
 
 対象となるHTTPリクエストパースクレートです。  
 
@@ -33,5 +31,3 @@ parse (関数)
 method -> HttpMethod列挙型
 path -> String
 ```
-
-
